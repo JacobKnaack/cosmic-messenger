@@ -31,6 +31,8 @@ class MessageList extends React.Component {
 
   componentDidMount() {
     Socket.subscribeToMessages(this.props.data.refetch);
+    this.scrollToBottom();
+
   }
 
   componentDidUpdate(prevProps) {
@@ -212,7 +214,7 @@ class MessageList extends React.Component {
           )
         })
         }
-        <div id="bottomRef" style={{ height: '35px' }} />
+        <div style={{ height: '35px' }} ref={(el) => { this.messagesEnd = el; }} />
         <div style={styles.listGradient} />
       </div >
     )
@@ -229,10 +231,7 @@ class MessageList extends React.Component {
   }
 
   scrollToBottom() {
-    const bottomRef = document.getElementById('bottomRef');
-    if (bottomRef) {
-      bottomRef.scrollIntoView({ behavior: 'smooth' });
-    }
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
   }
 }
 
