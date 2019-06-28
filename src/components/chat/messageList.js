@@ -31,8 +31,6 @@ class MessageList extends React.Component {
 
   componentDidMount() {
     Socket.subscribeToMessages(this.props.data.refetch);
-    this.scrollToBottom();
-
   }
 
   componentDidUpdate(prevProps) {
